@@ -1,12 +1,17 @@
-# Makefile
 
 CXX      := g++
 CXXFLAGS := -std=c++20 -Wall -g
 
-all: heap.o
+all: examheap
+
+examheap: heap.o examheap.o
+<TAB>$(CXX) $(CXXFLAGS) $^ -o $@
 
 heap.o: heap.cpp heap.h
-	$(CXX) $(CXXFLAGS) -c heap.cpp -o heap.o
+<TAB>$(CXX) $(CXXFLAGS) -c heap.cpp -o heap.o
+
+examheap.o: examheap.cpp heap.h
+<TAB>$(CXX) $(CXXFLAGS) -c examheap.cpp -o examheap.o
 
 clean:
-	rm -f *.o
+<TAB>rm -f *.o examheap
